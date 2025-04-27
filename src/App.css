@@ -1,10 +1,10 @@
 body {
-  background-color: #f5f5dc; /* vintage beige background */
+  background-color: #f5f5dc; 
   margin: 0;
   padding: 0;
-  font-family: 'Georgia', serif; /* vintage font */
+  font-family: 'Georgia', serif;
   text-align: center;
-  color: #3b2f2f; /* deep brown text */
+  color: #3b2f2f;
 }
 
 h1 {
@@ -19,8 +19,8 @@ button {
   margin: 20px;
   padding: 12px 24px;
   font-size: 20px;
-  background-color: #654321; /* dark brown */
-  color: #f5f5dc; /* beige text */
+  background-color: #654321; 
+  color: #f5f5dc; 
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -139,6 +139,8 @@ p {
 .winner-popup button:hover {
   background-color: #3b2f2f;
 }
+
+/* Footer */
 .footer {
   margin-top: 40px;
   padding: 20px;
@@ -149,4 +151,54 @@ p {
 
 .footer p {
   margin: 0;
+}
+
+/* Make the game responsive for mobile */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .card {
+    width: 120px;
+    height: 180px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .winner-popup {
+    width: 90%;
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100px;
+    height: 150px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 16px;
+  }
 }

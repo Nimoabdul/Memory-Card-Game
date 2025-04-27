@@ -183,10 +183,9 @@ function Game() {
           <button onClick={handleNewGame}>Play Again</button>
         </div>
       )}
-
-      <footer className="footer">
-        <p>Made with ❤️ by Nimo Abdul © 2025</p>
-      </footer>
+<footer className="footer">
+  <p>Made with &lt;3 by Nimo Abdul © 2025</p>
+</footer>
     </div>
   );
 }

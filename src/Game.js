@@ -15,7 +15,7 @@ import backBrownNut from './img/backbrownnut.png';
 import backGreenNut from './img/backgreennut.png';
 import backRed49 from './img/backred49.png';
 import backRed51 from './img/backred51.png';
-import backBlue from './img/backblue.png'; 
+import backBlue from './img/backblue.png';
 
 const frontImages = [
   frontClub,
@@ -47,6 +47,10 @@ function Game() {
 
   const [showWinner, setShowWinner] = useState(false);
 
+  const [bestTime, setBestTime] = useState(
+    localStorage.getItem('bestTime') ? Number(localStorage.getItem('bestTime')) : null
+  );
+
   const shuffleCards = () => {
     let doubledFronts = [...frontImages, ...frontImages]; // duplicate fronts
 
@@ -70,7 +74,7 @@ function Game() {
     setTurns(0);
     setTime(0);
     setTimerRunning(true);
-    setShowWinner(false); 
+    setShowWinner(false);
   };
 
   const handleChoice = (card) => {
@@ -125,6 +129,12 @@ function Game() {
       setTimerRunning(false);
       setTimeout(() => {
         setShowWinner(true);
+
+        // Save best time
+        if (bestTime === null || time < bestTime) {
+          localStorage.setItem('bestTime', time);
+          setBestTime(time);
+        }
       }, 500);
     }
   }, [cards]);
@@ -140,8 +150,10 @@ function Game() {
   return (
     <div className="Game">
       <h1>Memory Card Game</h1>
-      <button onClick={handleNewGame}>New Game</button>
-      
+      <div className="top-bar">
+  <p>Turns: {turns}</p>
+  <button onClick={handleNewGame}>New Game</button>
+</div>
       <div className="card-grid">
         {cards.map(card => (
           <Card 
@@ -154,25 +166,29 @@ function Game() {
         ))}
       </div>
 
-      <p>Turns: {turns}</p>
+    
       <p>Time: {time} seconds</p>
+      <p>Best Time: {bestTime !== null ? `${bestTime} seconds` : "No best time yet"}</p>
+
+
 
       {showWinner && (
         <div className="winner-popup">
-          <h2> You Win! </h2>
+          <h2>🏆 You Win! 🏆</h2>
           <p>Finished in {time} seconds</p>
           <p>Turns taken: {turns}</p>
+          {bestTime !== null && (
+            <p>Best Time: {bestTime} seconds</p>
+          )}
           <button onClick={handleNewGame}>Play Again</button>
         </div>
       )}
+
       <footer className="footer">
-  <p>Made with ❤️ by Nimo Abdul © 2025</p>
-</footer>
-
+        <p>Made with ❤️ by Nimo Abdul © 2025</p>
+      </footer>
     </div>
-    
   );
-
 }
 
 export default Game;
